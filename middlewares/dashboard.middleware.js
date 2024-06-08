@@ -7,6 +7,8 @@ const User = require("../models/user.model");
 const Park = require("../models/park.model");
 const Slot = require("../models/slot.model");
 const Reservation = require("../models/reservation.model");
+const Student = require('../models/student.model');
+const Hostel = require('../models/hostel.model');
 
 const programExists = ((req, res, next) => {
     Program.findOne({ "details.name": req.body.name}, (err, result) => {
@@ -74,6 +76,24 @@ const emailExists = ((req, res, next) => {
     });
 })
 
+const accountVerified = ((req, res, next) => {
+    User.findOne({email: req.body.email}, (err, result) => {
+        if(err){
+            console.log("Error: ", err);
+            return res.json({error:"error", result:"something went wrong"});
+        }else if(result){
+            if(result.status == 0){
+                return res.json({error:"error", status: 409, result:"account not verified"});
+            }else{
+                next()
+            }
+        
+        }else{
+            next()
+        }
+    });
+})
+
 const phoneNumberExists = ((req, res, next) => {
     User.findOne({phoneNumber: req.body.phoneNumber}, (err, result) => {
         if(err){
@@ -81,6 +101,19 @@ const phoneNumberExists = ((req, res, next) => {
             res.json({error:"error", result:"something went wrong"});
         }else if(result){
             res.json({error:"error", status: 409, result:"phone number already exists"});
+        }else{
+            next();
+        }
+    });
+})
+
+const regNumberExists = ((req, res, next) => {
+    Student.findOne({regNumber: req.body.regNumber}, (err, result) => {
+        if(err){
+            console.log("Error: ", err);
+            res.json({error:"error", result:"something went wrong"});
+        }else if(result){
+            res.json({error:"error", status: 409, result:"reg number already exists"});
         }else{
             next();
         }
@@ -108,6 +141,19 @@ const parkSlotExists = ((req, res, next) => {
             res.json({error:"error", result:"something went wrong"});
         }else if(result){
             res.json({error:"error", status: 409, result:"slot already exists in this park"});
+        }else{
+            next();
+        }
+    });
+})
+
+const hostelExists = ((req, res, next) => {
+    Hostel.findOne({name: req.body.name}, (err, result) => {
+        if(err){
+            console.log("Error: ", err);
+            res.json({error:"error", result:"something went wrong"});
+        }else if(result){
+            res.json({error:"error", status: 409, result:"hostel already exists"});
         }else{
             next();
         }
@@ -165,6 +211,31 @@ const phoneNumberEditExists = ((req, res, next) => {
     });
 })
 
+const regNumberEditExists = ((req, res, next) => {
+    Student.findOne({regNumber: req.body.regNumber}, (err, result) => {
+        if(err){
+            console.log("Error: ", err);
+            res.json({error:"error", result:"something went wrong"});
+        }else if(result){
+            Student.findOne({regNumber: req.body.regNumber, _id: req.body.id}, (err2, result2) => {
+                if(err2){
+                    console.log("Error: ", err2)
+                    res.json({error:"error", result:"something went wrong"})
+                }
+                
+                if(result2?.regNumber == req.body.regNumber){
+                    next()
+                } else{    
+                    res.json({error:"error", status: 409, result:"Reg number already exists"});
+                }
+            })
+            
+        }else{
+            next();
+        }
+    });
+})
+
 
 const parkNameEditExists = ((req, res, next) => {
     Park.findOne({name: req.body.name}, (err, result) => {
@@ -214,6 +285,29 @@ const parkSlotEditExists = ((req, res, next) => {
     });
 })
 
+const hostelEditExists = ((req, res, next) => {
+    Hostel.findOne({name: req.body.name}, (err, result) => {
+        if(err){
+            console.log("Error: ", err);
+            res.json({error:"error", result:"something went wrong"});
+        }else if(result){
+            Hostel.findOne({name: req.body.name, _id: req.body.id}, (err2, result2) => {
+                if(err2){
+                    console.log("Error: ", err2)
+                    res.json({error:"error", result:"something went wrong"})
+                }
+                
+                if(result2?.name == req.body.name){
+                    next()
+                } else{    
+                    res.json({error:"error", status: 409, result:"hostel already exists"});
+                }
+            })
+        }else{
+            next();
+        }
+    });
+})
 
 
 module.exports = {
@@ -223,10 +317,15 @@ module.exports = {
     litExists: litExists,
     emailExists,
     phoneNumberExists,
+    regNumberExists,
+    accountVerified,
     parkNameExists,
     parkSlotExists,
+    hostelExists,
     emailEditExists,
     phoneNumberEditExists,
+    regNumberEditExists,
     parkNameEditExists,
-    parkSlotEditExists
+    parkSlotEditExists,
+    hostelEditExists
 }

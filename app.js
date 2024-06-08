@@ -41,15 +41,15 @@ mongoose.connect(DB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 
 //Routes
 app.get("/", (req, res) => {
-    res.send("Carpark APIs");
-    console.log("Carpark APIs");
+    res.send("Complaint Management APIs");
+    console.log("Complaint Management APIs");
     
 });
 
 
 //Server
 app.listen(process.env.PORT || 8000, ()=>{
-    console.log("Cryptolits Server started...");
+    console.log("Complaint  Management Server started...");
     console.log("Environment : " + ENV);           
     //const e_valid = validator.isEmail("g@d.com");
     //console.log("Email: " + e_valid);

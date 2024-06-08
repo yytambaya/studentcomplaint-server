@@ -15,6 +15,11 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  hostelId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Hostel',
+    required: false,
+  },
   gender: {
     type: String,
     required: false,

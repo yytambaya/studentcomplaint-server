@@ -481,7 +481,71 @@ const user = (req, res, next) => {
         }
     });
 }
+const studentLogin = (req, res, next) => {
+    const validationRule = {
+        "regNumber": "required|string|max:1000",
+        "password": "required|max:1000",
+    }
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            /*res.status(412)
+                .send({
+                    success: false,
+                    message: 'Validation failed',
+                    data: err
+                });*/
+            res.json({error:"error", result: err})    
+        } else {
+            next();
+        }
+    });
+}
+
+
+const student = (req, res, next) => {
+    const validationRule = {
+        "name": "required|string",
+        "regNumber": "required|string|max:100",
+        "email": "required|email|max:1000",
+        "phoneNumber": "required|digits:11",
+        "hostelId": "required|string",
+        "status": "required"
+    }
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            /*res.status(412)
+                .send({
+                    success: false,
+                    message: 'Validation failed',
+                    data: err
+                });*/
+            res.json({error:"error", result: err})    
+        } else {
+            next();
+        }
+    });
+}
+
+
 const park = (req, res, next) => {
+    const validationRule = {
+        "name": "required|string|max:1000"
+    }
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            /*res.status(412)
+                .send({
+                    success: false,
+                    message: 'Validation failed',
+                    data: err
+                });*/
+            res.json({error:"error", result: err})    
+        } else {
+            next();
+        }
+    });
+}
+const hostel = (req, res, next) => {
     const validationRule = {
         "name": "required|string|max:1000"
     }
@@ -559,6 +623,71 @@ const revoking = (req, res, next) => {
     });
 }
 
+const notification = (req, res, next) => {
+    const validationRule = {
+        "type": "required|string",
+        "message": "required|string|max:1000",
+        "hostelId": "required|string",
+        "status": "required"
+    }
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            /*res.status(412)
+                .send({
+                    success: false,
+                    message: 'Validation failed',
+                    data: err
+                });*/
+            res.json({error:"error", result: err})    
+        } else {
+            next();
+        }
+    });
+}
+
+const complaint = (req, res, next) => {
+    const validationRule = {
+        "title": "required|string",
+        "description": "required|string|max:3000",
+        "category": "required|string",
+        "urgency": "required|string",
+        "hostelId": "required|string",
+        "studentId": "required|string"
+    }
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            /*res.status(412)
+                .send({
+                    success: false,
+                    message: 'Validation failed',
+                    data: err
+                });*/
+            res.json({error:"error", result: err})    
+        } else {
+            next();
+        }
+    });
+}
+
+const reply = (req, res, next) => {
+    const validationRule = {
+        "reply": "required|string|max:10000",
+    }
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            /*res.status(412)
+                .send({
+                    success: false,
+                    message: 'Validation failed',
+                    data: err
+                });*/
+            res.json({error:"error", result: err})    
+        } else {
+            next();
+        }
+    });
+}
+
 
 
 module.exports = { 
@@ -570,10 +699,16 @@ module.exports = {
   payment,
   lit,
   user,
+  studentLogin,
+  student,
   park,
+  hostel,
   slot,
   reservation,
   revoking,
+  complaint,
+  reply,
+  notification,
   validateEmail,
   validateTitle,
   validateDescription,
