@@ -1,0 +1,11 @@
+{
+    "version": 2,
+    "name": "complaint-management server",
+    "builds": [
+       { "src": "app.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+       { "src": "/(.*)", "dest": "/app.js" },
+       { "src": "/images/(.*)", "dest": "images/$1" }     
+    ]
+ }
