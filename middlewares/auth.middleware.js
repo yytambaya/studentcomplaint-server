@@ -3,7 +3,6 @@ const User = require("../models/user.model");
 const Admin = require("../models/admin");
 const Subscription = require("../models/subscription.model");
 const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
 
 const accountExists = ((req, res, next) => {
     User.findOne({email: req.body.email}, (err, result) => {

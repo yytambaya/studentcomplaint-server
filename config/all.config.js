@@ -7,7 +7,7 @@ module.exports = {
     App:{
         ENV: process.env.NODE_ENV,
         DEV_DB_URL: 'mongodb://0.0.0.0:27017/complaint-system',
-        PROD_DB_URL: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.omgwy.mongodb.net/?retryWrites=true&w=majority`, 
+        PROD_DB_URL: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.mrrhl.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`, 
         DEV_API_URL: 'http://localhost:5000',
         PROD_API_URL: 'https://healdaworld-admin.herokuapp.com',
         PROD_SITE_URL: 'http://healaworld.org',
