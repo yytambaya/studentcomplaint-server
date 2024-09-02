@@ -11,7 +11,7 @@ const { getAllReservations, setReservation, getReservation, editReservation, rem
 const { getAllUsers, editUser, removeUser, getUser, setUser } = require('../controllers/user.controller');
 const { setStudent, getStudent, editStudent, removeStudent, getAllStudents, studentLogin } = require('../controllers/student.controller');
 const { setHostel, getHostel, getAllHostels, editHostel, removeHostel } = require('../controllers/hostel.controller');
-const { setComplaint, getComplaint, getAllComplaints, editComplaint, removeComplaint, markComplaintAsResolved, replyToComplaint } = require('../controllers/complaint.controller');
+const { setComplaint, getComplaint, getAllComplaints, editComplaint, removeComplaint, markComplaintAsResolved, replyToComplaint, getSingleUserComplaints } = require('../controllers/complaint.controller');
 const { setNotification, getNotification, getAllNotifications, editNotification, removeNotification } = require('../controllers/notification.controller');
 //const { userValidationRules, validate } = require('../middlewares')
 
@@ -94,7 +94,7 @@ module.exports = app => {
     // Hostel
     app.post('/v1/admin/hostel/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.hostel, middlewares.Dashbaord.hostelExists], setHostel);
     app.get('/v1/hostel/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getHostel);
-    app.get('/v1/admin/hostel/getall', [middlewares.Auth.isAuthorized], getAllHostels);
+    app.get('/v1/admin/hostel/getall', getAllHostels);
     app.post('/v1/admin/hostel/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.hostel, middlewares.validatorV2.validateID, middlewares.Dashbaord.hostelEditExists], editHostel);
     app.post('/v1/admin/hostel/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeHostel);
   
@@ -102,6 +102,7 @@ module.exports = app => {
     app.post('/v1/admin/complaint/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.complaint], setComplaint);
     app.get('/v1/complaint/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getComplaint);
     app.get('/v1/admin/complaint/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], getAllComplaints);
+    app.get('/v1/admin/complaint/getforuser', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getSingleUserComplaints);
     app.post('/v1/admin/complaint/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.complaint, middlewares.validatorV2.validateID], editComplaint);
     app.post('/v1/admin/complaint/reply', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID, middlewares.validatorV2.reply], replyToComplaint);
     app.post('/v1/admin/complaint/tracking-status', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], markComplaintAsResolved);

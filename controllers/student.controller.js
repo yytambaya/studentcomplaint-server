@@ -34,6 +34,7 @@ exports.setStudent = (req, res) => {
     const student = new Student({
         name: req.body.name,
         regNumber: req.body.regNumber,
+        roomNumber: req.body.roomNumber,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
         hostelId: req.body.hostelId,
@@ -105,19 +106,19 @@ exports.editStudent = (req, res) => {
     const student = new Student({
         name: req.body.name,
         regNumber: req.body.regNumber,
+        roomNumber: req.body.roomNumber,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
         hostelId: req.body.hostelId,
-        password: bcrypt.hashSync(req.body.password, 8),
         status: req.body.status
     })
 
-   Student.findByIdAndUpdate({_id: req.body.id}, student, (err, result) => {
+   Student.findByIdAndUpdate(req.body.id, student, {new: true}, (err, result) => {
         if(err){
-            return res.json({error:"error", result:"something went wrong"});
+            console.log(err)
+            return res.json({error:"error", result:"something went wrong edit student"});
         }
         if(result){
-
             console.log("Data updated")
             console.log(result);
             return res.json({error:"", result:result});

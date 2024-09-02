@@ -69,6 +69,34 @@ exports.getAllComplaints = async (req, res) => {
    }
 
 }
+exports.getSingleUserComplaints = async (req, res) => {
+    console.log("Getting more")   
+    var returnValue = {}
+    try{
+       await Complaint.find({studentId: req.query.id}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit)).sort({createdAt: -1}).then(async result => {
+           if(Object.keys(result).length != 0){
+                returnValue = {error:"", result:result}
+           
+           }else{
+               returnValue = {error:"error", result:"NO_LITS"};
+           }
+
+       }).catch(error => {
+           //console.log("Error: " + error)
+           returnValue = {error: "error", result:"Something went wrong"}
+       })   
+       //console.log("Tweets with profiles...")
+       return res.json(returnValue);
+
+   }catch(error){
+       //console.log(error)
+       return res.json({error:"error", result:"Something went wrong"});
+       
+   }
+
+}
+
+
 
 
 exports.editComplaint = (req, res) => {

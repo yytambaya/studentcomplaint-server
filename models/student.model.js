@@ -11,7 +11,12 @@ const studentSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-
+  
+  roomNumber:{
+    type:String,
+    required: false
+  },
+  
   email:{
     type:String,
     required: true,
