@@ -20,7 +20,7 @@ exports.studentLogin = (req, res) => {
                 console.log("My User ID: " + result._id)
                 console.log(result);
                 const token = jwt.sign({email: req.body.regNumber}, config.allconfig.temp_var.token_secret, {expiresIn: '86400s'}); 
-                return res.json({error:"", code:400, status:200, result:{token: token, result}});
+                return res.json({error:"", status:200, result:{token: token, result}});
             }   
         }else{
             return res.json({error:"error", status: 404, result:"reg number or password is incorrect"});

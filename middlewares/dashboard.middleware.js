@@ -1,4 +1,4 @@
-const config = require('../config');
+//const config = require('../config');
 const Program = require("../models/program");
 const Leadboard = require("../models/leadboard");
 const Payment = require("../models/payment");
@@ -6,7 +6,7 @@ const Lit = require("../models/lit");
 const User = require("../models/user.model");
 const Park = require("../models/park.model");
 const Slot = require("../models/slot.model");
-const Reservation = require("../models/reservation.model");
+//const Reservation = require("../models/reservation.model");
 const Student = require('../models/student.model');
 const Hostel = require('../models/hostel.model');
 

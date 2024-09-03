@@ -73,20 +73,20 @@ module.exports = app => {
     //app.post('/v1/admin/lit/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.lit.Lit.removeLit);
     
     //Admin
-    app.post('/v1/admin/signup', [middlewares.Auth.isAuthorized, middlewares.validatorV2.signup,  middlewares.Auth.adminAccountExists], controllers.login.adminSignUp);
-    app.post('/v1/admin/login', [middlewares.Auth.isAuthorized, middlewares.validatorV2.login], controllers.login.adminSignIn);
+    app.post('/v1/admin/signup', [ middlewares.validatorV2.signup,  middlewares.Auth.adminAccountExists], controllers.login.adminSignUp);
+    app.post('/v1/admin/login', [middlewares.validatorV2.login], controllers.login.adminSignIn);
     
     
     // Student - admin
-    app.post('/v1/admin/student/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.student, middlewares.Dashbaord.emailExists, middlewares.Dashbaord.phoneNumberExists, middlewares.Dashbaord.regNumberExists], setStudent);
+    app.post('/v1/admin/student/new', [middlewares.validatorV2.student, middlewares.Dashbaord.emailExists, middlewares.Dashbaord.phoneNumberExists, middlewares.Dashbaord.regNumberExists], setStudent);
     app.get('/v1/admin/student/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getStudent);
     app.get('/v1/admin/student/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], getAllStudents);
     app.post('/v1/admin/student/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.student, middlewares.validatorV2.validateID, middlewares.Dashbaord.emailEditExists, middlewares.Dashbaord.phoneNumberEditExists, middlewares.Dashbaord.regNumberEditExists], editStudent);
     app.post('/v1/admin/student/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeStudent);
 
     // Student
-    app.post('/v1/student/login', [middlewares.Auth.isAuthorized, middlewares.validatorV2.studentLogin, middlewares.Dashbaord.accountVerified], studentLogin);
-    app.post('/v1/student/new', [middlewares.Auth.isAuthorized, middlewares.validatorV2.student, middlewares.Dashbaord.emailExists, middlewares.Dashbaord.phoneNumberExists, middlewares.Dashbaord.regNumberExists], setStudent);
+    app.post('/v1/student/login', [middlewares.validatorV2.studentLogin, middlewares.Dashbaord.accountVerified], studentLogin);
+    app.post('/v1/student/new', [ middlewares.validatorV2.student, middlewares.Dashbaord.emailExists, middlewares.Dashbaord.phoneNumberExists, middlewares.Dashbaord.regNumberExists], setStudent);
     app.get('/v1/student/get', [middlewares.Auth.isAuthorized, middlewares.validatorV2.validateIDGet], getStudent);
     app.post('/v1/student/edit', [middlewares.Auth.isAuthorized, middlewares.validatorV2.student, middlewares.validatorV2.validateID, middlewares.Dashbaord.emailEditExists, middlewares.Dashbaord.phoneNumberEditExists, middlewares.Dashbaord.regNumberEditExists], editStudent);
     app.post('/v1/student/remove', [middlewares.Auth.isAuthorized, middlewares.validatorV2.validateID], removeStudent);
