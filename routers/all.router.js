@@ -39,7 +39,7 @@ module.exports = app => {
     app.use(passport.session())
     
     //Starter
-    //app.post('/v1/user/signup', [middlewares.Auth.isAuthorized, middlewares.validatorV2.signup,  middlewares.Auth.accountExists], controllers.login.signUp);
+    //app.post('/v1/user/signup', [middlewares.validatorV2.signup,  middlewares.Auth.accountExists], controllers.login.signUp);
     //app.post('/v1/user/subscribe', [middlewares.Auth.isAuthorized, middlewares.validatorV2.validateEmail,  middlewares.Auth.subscriptionExists], controllers.login.subscribe);
     //app.post('/v1/admin/signup', [middlewares.Auth.isAuthorized, middlewares.validatorV2.signup,  middlewares.Auth.adminAccountExists], controllers.login.adminSignUp);
     //app.get('/v1/user/activate', [middlewares.validator.validateID_get],  controllers.login.verifyAccount); //correct 
