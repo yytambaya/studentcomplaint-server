@@ -40,18 +40,18 @@ module.exports = app => {
     
     //Starter
     //app.post('/v1/user/signup', [middlewares.validatorV2.signup,  middlewares.Auth.accountExists], controllers.login.signUp);
-    //app.post('/v1/user/subscribe', [middlewares.Auth.isAuthorized, middlewares.validatorV2.validateEmail,  middlewares.Auth.subscriptionExists], controllers.login.subscribe);
-    //app.post('/v1/admin/signup', [middlewares.Auth.isAuthorized, middlewares.validatorV2.signup,  middlewares.Auth.adminAccountExists], controllers.login.adminSignUp);
+    //app.post('/v1/user/subscribe', [ middlewares.validatorV2.validateEmail,  middlewares.Auth.subscriptionExists], controllers.login.subscribe);
+    //app.post('/v1/admin/signup', [ middlewares.validatorV2.signup,  middlewares.Auth.adminAccountExists], controllers.login.adminSignUp);
     //app.get('/v1/user/activate', [middlewares.validator.validateID_get],  controllers.login.verifyAccount); //correct 
-    //app.post('/v1/user/login', [middlewares.Auth.isAuthorized, middlewares.validatorV2.login, middlewares.Dashbaord.accountVerified], controllers.login.signIn);
-    //app.post('/v1/admin/login', [middlewares.Auth.isAuthorized, middlewares.validatorV2.login], controllers.login.adminSignIn);
-    //app.post('/v1/user/forgotpassword', [middlewares.Auth.isAuthorized, middlewares.validatorV2.validateEmail], controllers.login.forgotPassword);
+    //app.post('/v1/user/login', [ middlewares.validatorV2.login, middlewares.Dashbaord.accountVerified], controllers.login.signIn);
+    //app.post('/v1/admin/login', [ middlewares.validatorV2.login], controllers.login.adminSignIn);
+    //app.post('/v1/user/forgotpassword', [ middlewares.validatorV2.validateEmail], controllers.login.forgotPassword);
     //app.get('/v1/user/reset', [middlewares.validator.validateID_get, middlewares.validator.validateToken], controllers.login.passwordReset);
-    //app.post('/v1/user/newpassword', [middlewares.Auth.isAuthorized, middlewares.validator.validateID_post, middlewares.validatorV2.validatePassword], controllers.login.newPassword);
-    //app.post('/v1/user/pay', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validator.validateEmail,middlewares.validatorV2.validateID, middlewares.validator.validatePaymentType], controllers.login.pay);
-    //app.get('/v1/user/subscription', [middlewares.Auth.isAuthorized, middlewares.validator.validateID_get, middlewares.Auth.isPaid, middlewares.Auth.isLogged, middlewares.validator.validateID_get], controllers.login.getSubscription);
-    //app.post('/v1/user/reactivate', [middlewares.Auth.isAuthorized, middlewares.validatorV2.validateEmail], controllers.login.reactivate);
-    /*app.get('/v1/logout', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validator.validateID_get, middlewares.Auth.isPaid], controllers.login.logout);*/
+    //app.post('/v1/user/newpassword', [ middlewares.validator.validateID_post, middlewares.validatorV2.validatePassword], controllers.login.newPassword);
+    //app.post('/v1/user/pay', [ middlewares.Auth.isLogged, middlewares.validator.validateEmail,middlewares.validatorV2.validateID, middlewares.validator.validatePaymentType], controllers.login.pay);
+    //app.get('/v1/user/subscription', [ middlewares.validator.validateID_get, middlewares.Auth.isPaid, middlewares.Auth.isLogged, middlewares.validator.validateID_get], controllers.login.getSubscription);
+    //app.post('/v1/user/reactivate', [ middlewares.validatorV2.validateEmail], controllers.login.reactivate);
+    /*app.get('/v1/logout', [ middlewares.Auth.isLogged, middlewares.validator.validateID_get, middlewares.Auth.isPaid], controllers.login.logout);*/
     //app.get('/v1/dashboard', [middlewares.Auth.isLogged], controllers.dashboard.getHomepage);
     
     //Login with Google
@@ -66,11 +66,11 @@ module.exports = app => {
     //app.get('/v1/lit/getall', [middlewares.Auth.isAuthorized], controllers.lit.Lit.getAllLits);
     
     //Admin Lits
-    //app.post('/v1/admin/lit/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.lit, middlewares.Dashbaord.litExists], controllers.lit.Lit.setLit);
-    //app.get('/v1/admin/lit/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], controllers.lit.Lit.getLit);
-    //app.get('/v1/admin/lit/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], controllers.lit.Lit.getAllLits);
-    //app.post('/v1/admin/lit/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.lit, middlewares.validatorV2.validateID], controllers.lit.Lit.editLit);
-    //app.post('/v1/admin/lit/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.lit.Lit.removeLit);
+    //app.post('/v1/admin/lit/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.lit, middlewares.Dashbaord.litExists], controllers.lit.Lit.setLit);
+    //app.get('/v1/admin/lit/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], controllers.lit.Lit.getLit);
+    //app.get('/v1/admin/lit/getall', [ middlewares.Auth.isLogged], controllers.lit.Lit.getAllLits);
+    //app.post('/v1/admin/lit/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.lit, middlewares.validatorV2.validateID], controllers.lit.Lit.editLit);
+    //app.post('/v1/admin/lit/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.lit.Lit.removeLit);
     
     //Admin
     app.post('/v1/admin/signup', [ middlewares.validatorV2.signup,  middlewares.Auth.adminAccountExists], controllers.login.adminSignUp);
@@ -79,84 +79,84 @@ module.exports = app => {
     
     // Student - admin
     app.post('/v1/admin/student/new', [middlewares.validatorV2.student, middlewares.Dashbaord.emailExists, middlewares.Dashbaord.phoneNumberExists, middlewares.Dashbaord.regNumberExists], setStudent);
-    app.get('/v1/admin/student/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getStudent);
-    app.get('/v1/admin/student/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], getAllStudents);
-    app.post('/v1/admin/student/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.student, middlewares.validatorV2.validateID, middlewares.Dashbaord.emailEditExists, middlewares.Dashbaord.phoneNumberEditExists, middlewares.Dashbaord.regNumberEditExists], editStudent);
-    app.post('/v1/admin/student/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeStudent);
+    app.get('/v1/admin/student/get', [middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getStudent);
+    app.get('/v1/admin/student/getall', [ middlewares.Auth.isLogged], getAllStudents);
+    app.post('/v1/admin/student/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.student, middlewares.validatorV2.validateID, middlewares.Dashbaord.emailEditExists, middlewares.Dashbaord.phoneNumberEditExists, middlewares.Dashbaord.regNumberEditExists], editStudent);
+    app.post('/v1/admin/student/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeStudent);
 
     // Student
     app.post('/v1/student/login', [middlewares.validatorV2.studentLogin, middlewares.Dashbaord.accountVerified], studentLogin);
     app.post('/v1/student/new', [ middlewares.validatorV2.student, middlewares.Dashbaord.emailExists, middlewares.Dashbaord.phoneNumberExists, middlewares.Dashbaord.regNumberExists], setStudent);
-    app.get('/v1/student/get', [middlewares.Auth.isAuthorized, middlewares.validatorV2.validateIDGet], getStudent);
-    app.post('/v1/student/edit', [middlewares.Auth.isAuthorized, middlewares.validatorV2.student, middlewares.validatorV2.validateID, middlewares.Dashbaord.emailEditExists, middlewares.Dashbaord.phoneNumberEditExists, middlewares.Dashbaord.regNumberEditExists], editStudent);
-    app.post('/v1/student/remove', [middlewares.Auth.isAuthorized, middlewares.validatorV2.validateID], removeStudent);
+    app.get('/v1/student/get', [ middlewares.validatorV2.validateIDGet], getStudent);
+    app.post('/v1/student/edit', [ middlewares.validatorV2.student, middlewares.validatorV2.validateID, middlewares.Dashbaord.emailEditExists, middlewares.Dashbaord.phoneNumberEditExists, middlewares.Dashbaord.regNumberEditExists], editStudent);
+    app.post('/v1/student/remove', [ middlewares.validatorV2.validateID], removeStudent);
   
     // Hostel
-    app.post('/v1/admin/hostel/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.hostel, middlewares.Dashbaord.hostelExists], setHostel);
-    app.get('/v1/hostel/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getHostel);
+    app.post('/v1/admin/hostel/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.hostel, middlewares.Dashbaord.hostelExists], setHostel);
+    app.get('/v1/hostel/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getHostel);
     app.get('/v1/admin/hostel/getall', getAllHostels);
-    app.post('/v1/admin/hostel/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.hostel, middlewares.validatorV2.validateID, middlewares.Dashbaord.hostelEditExists], editHostel);
-    app.post('/v1/admin/hostel/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeHostel);
+    app.post('/v1/admin/hostel/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.hostel, middlewares.validatorV2.validateID, middlewares.Dashbaord.hostelEditExists], editHostel);
+    app.post('/v1/admin/hostel/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeHostel);
   
     // Complaint
-    app.post('/v1/admin/complaint/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.complaint], setComplaint);
-    app.get('/v1/complaint/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getComplaint);
-    app.get('/v1/admin/complaint/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], getAllComplaints);
-    app.get('/v1/admin/complaint/getforuser', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getSingleUserComplaints);
-    app.post('/v1/admin/complaint/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.complaint, middlewares.validatorV2.validateID], editComplaint);
-    app.post('/v1/admin/complaint/reply', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID, middlewares.validatorV2.reply], replyToComplaint);
-    app.post('/v1/admin/complaint/tracking-status', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], markComplaintAsResolved);
-    app.post('/v1/admin/complaint/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeComplaint);
+    app.post('/v1/admin/complaint/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.complaint], setComplaint);
+    app.get('/v1/complaint/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getComplaint);
+    app.get('/v1/admin/complaint/getall', [ middlewares.Auth.isLogged], getAllComplaints);
+    app.get('/v1/admin/complaint/getforuser', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getSingleUserComplaints);
+    app.post('/v1/admin/complaint/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.complaint, middlewares.validatorV2.validateID], editComplaint);
+    app.post('/v1/admin/complaint/reply', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID, middlewares.validatorV2.reply], replyToComplaint);
+    app.post('/v1/admin/complaint/tracking-status', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], markComplaintAsResolved);
+    app.post('/v1/admin/complaint/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeComplaint);
   
     // Notification
-    app.post('/v1/admin/notification/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.notification], setNotification);
-    app.get('/v1/notification/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getNotification);
-    app.get('/v1/admin/notification/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], getAllNotifications);
-    app.post('/v1/admin/notification/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.notification, middlewares.validatorV2.validateID], editNotification);
-    app.post('/v1/admin/notification/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeNotification);
+    app.post('/v1/admin/notification/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.notification], setNotification);
+    app.get('/v1/notification/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getNotification);
+    app.get('/v1/admin/notification/getall', [ middlewares.Auth.isLogged], getAllNotifications);
+    app.post('/v1/admin/notification/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.notification, middlewares.validatorV2.validateID], editNotification);
+    app.post('/v1/admin/notification/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeNotification);
   
     
     
     //Admin Student
-    //app.post('/v1/admin/user/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.user, middlewares.Dashbaord.emailExists,middlewares.Dashbaord.phoneNumberExists], setUser);
-    //app.get('/v1/admin/user/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getUser);
-    //app.get('/v1/admin/user/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], getAllUsers);
-    //app.post('/v1/admin/user/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.user, middlewares.validatorV2.validateID, middlewares.Dashbaord.emailEditExists, middlewares.Dashbaord.phoneNumberEditExists], editUser);
-    //app.post('/v1/admin/user/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeUser);
+    //app.post('/v1/admin/user/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.user, middlewares.Dashbaord.emailExists,middlewares.Dashbaord.phoneNumberExists], setUser);
+    //app.get('/v1/admin/user/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getUser);
+    //app.get('/v1/admin/user/getall', [ middlewares.Auth.isLogged], getAllUsers);
+    //app.post('/v1/admin/user/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.user, middlewares.validatorV2.validateID, middlewares.Dashbaord.emailEditExists, middlewares.Dashbaord.phoneNumberEditExists], editUser);
+    //app.post('/v1/admin/user/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeUser);
     
     //User
-    //app.post('/v1/user/new', [middlewares.Auth.isAuthorized, middlewares.validatorV2.user, middlewares.Dashbaord.emailExists,middlewares.Dashbaord.phoneNumberExists], setUser);
-    //app.get('/v1/user/get', [middlewares.Auth.isAuthorized, middlewares.validatorV2.validateIDGet], getUser);
-    //app.post('/v1/user/edit', [middlewares.Auth.isAuthorized, middlewares.validatorV2.user, middlewares.validatorV2.validateID, middlewares.Dashbaord.emailEditExists, middlewares.Dashbaord.phoneNumberEditExists], editUser);
-    //app.post('/v1/user/remove', [middlewares.Auth.isAuthorized, middlewares.validatorV2.validateID], removeUser);
+    //app.post('/v1/user/new', [ middlewares.validatorV2.user, middlewares.Dashbaord.emailExists,middlewares.Dashbaord.phoneNumberExists], setUser);
+    //app.get('/v1/user/get', [ middlewares.validatorV2.validateIDGet], getUser);
+    //app.post('/v1/user/edit', [ middlewares.validatorV2.user, middlewares.validatorV2.validateID, middlewares.Dashbaord.emailEditExists, middlewares.Dashbaord.phoneNumberEditExists], editUser);
+    //app.post('/v1/user/remove', [ middlewares.validatorV2.validateID], removeUser);
   
   //Admin Park
-  //app.post('/v1/admin/park/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.park, middlewares.Dashbaord.parkNameExists], setPark);
-  //app.get('/v1/park/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getPark);
-  //app.get('/v1/admin/park/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], getAllParks);
-  //app.post('/v1/admin/park/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.park, middlewares.validatorV2.validateID, middlewares.Dashbaord.parkNameEditExists], editPark);
-  //app.post('/v1/admin/park/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removePark);
+  //app.post('/v1/admin/park/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.park, middlewares.Dashbaord.parkNameExists], setPark);
+  //app.get('/v1/park/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getPark);
+  //app.get('/v1/admin/park/getall', [ middlewares.Auth.isLogged], getAllParks);
+  //app.post('/v1/admin/park/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.park, middlewares.validatorV2.validateID, middlewares.Dashbaord.parkNameEditExists], editPark);
+  //app.post('/v1/admin/park/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removePark);
   
   //Admin slot
-  //app.post('/v1/admin/slot/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.slot, middlewares.Dashbaord.parkSlotExists], setSlot);
-  //app.get('/v1/admin/slot/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getSlot);
-  //app.get('/v1/admin/slot/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], getAllSlots);
-  //app.post('/v1/admin/slot/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.slot, middlewares.validatorV2.validateID, middlewares.Dashbaord.parkSlotEditExists], editSlot);
-  //app.post('/v1/admin/slot/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeSlot);
+  //app.post('/v1/admin/slot/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.slot, middlewares.Dashbaord.parkSlotExists], setSlot);
+  //app.get('/v1/admin/slot/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getSlot);
+  //app.get('/v1/admin/slot/getall', [ middlewares.Auth.isLogged], getAllSlots);
+  //app.post('/v1/admin/slot/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.slot, middlewares.validatorV2.validateID, middlewares.Dashbaord.parkSlotEditExists], editSlot);
+  //app.post('/v1/admin/slot/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeSlot);
   
   //Reservation
-  //app.post('/v1/reservation/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.reservation], setReservation);
-  //app.get('/v1/reservation/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getReservation);
-  //app.get('/v1/admin/reservation/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], getAllReservations);
-  //app.get('/v1/reservation/user-getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getAllUserReservations);
-  //app.post('/v1/admin/reservation/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.slot, middlewares.validatorV2.validateID], editReservation);
-  //app.post('/v1/admin/reservation/revoke', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.revoking], revokeReservation);
-  //app.post('/v1/admin/reservation/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeReservation);
+  //app.post('/v1/reservation/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.reservation], setReservation);
+  //app.get('/v1/reservation/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getReservation);
+  //app.get('/v1/admin/reservation/getall', [ middlewares.Auth.isLogged], getAllReservations);
+  //app.get('/v1/reservation/user-getall', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateIDGet], getAllUserReservations);
+  //app.post('/v1/admin/reservation/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.slot, middlewares.validatorV2.validateID], editReservation);
+  //app.post('/v1/admin/reservation/revoke', [ middlewares.Auth.isLogged, middlewares.validatorV2.revoking], revokeReservation);
+  //app.post('/v1/admin/reservation/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], removeReservation);
   
 
 
     //user
-    //app.get('/v1/getuser', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validator.validateID_get, middlewares.Auth.isPaid], controllers.dashboard.getUser);
+    //app.get('/v1/getuser', [ middlewares.Auth.isLogged, middlewares.validator.validateID_get, middlewares.Auth.isPaid], controllers.dashboard.getUser);
     
 
     //Collection
@@ -166,56 +166,56 @@ module.exports = app => {
     //Admin 
    
     //->Profile 
-    //app.post('/v1/admin/profile/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.signup, middlewares.Auth.accountExists], controllers.login.signUp);
-    //app.get('/v1/admin/profile/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Profile.getAdmin);
-    //app.get('/v1/admin/profile/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], controllers.dashboard.Profile.getAllUsers);
-    //app.post('/v1/admin/profile/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.profile, middlewares.validatorV2.validateUserID], controllers.dashboard.Profile.editUser);
-    //app.post('/v1/admin/profile/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateUserID], controllers.dashboard.Profile.removeProfile);
+    //app.post('/v1/admin/profile/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.signup, middlewares.Auth.accountExists], controllers.login.signUp);
+    //app.get('/v1/admin/profile/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Profile.getAdmin);
+    //app.get('/v1/admin/profile/getall', [ middlewares.Auth.isLogged], controllers.dashboard.Profile.getAllUsers);
+    //app.post('/v1/admin/profile/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.profile, middlewares.validatorV2.validateUserID], controllers.dashboard.Profile.editUser);
+    //app.post('/v1/admin/profile/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateUserID], controllers.dashboard.Profile.removeProfile);
     
     //Tickets
-    //app.get('/v1/admin/stats/ticket/getll', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], controllers.dashboard.Payment.getAllStatsTickets);
-    //app.get('/v1/admin/stats/ticket/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], controllers.dashboard.Payment.getStatsTickets);
+    //app.get('/v1/admin/stats/ticket/getll', [ middlewares.Auth.isLogged], controllers.dashboard.Payment.getAllStatsTickets);
+    //app.get('/v1/admin/stats/ticket/get', [ middlewares.Auth.isLogged], controllers.dashboard.Payment.getStatsTickets);
     
     
     //->Program 
-    //app.post('/v1/admin/program/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.program, middlewares.validatorV2.validateID, middlewares.Dashbaord.programExists, upload.single("logo")], controllers.dashboard.Program.setProgram);
-    //app.get('/v1/admin/program/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Program.getProgram);
-    //app.get('/v1/admin/program/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], controllers.dashboard.Program.getAllPrograms);
-    //app.get('/v1/admin/program/getallbytype', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateStatusType, middlewares.validatorV2.validateRaffleDrawType], controllers.dashboard.Program.getAllProgramsByType);
-    //app.get('/v1/admin/program/getoffers', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], controllers.dashboard.Program.getAllPrograms);
-    //app.get('/v1/admin/program/getmyprograms', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], controllers.dashboard.Program.getAllPrograms);
-    //app.post('/v1/admin/program/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.program, middlewares.validatorV2.validateID, middlewares.validatorV2.validateProgramID, middlewares.Dashbaord.programExists, upload.single("logo")], controllers.dashboard.Program.editProgram);
-    //app.post('/v1/admin/program/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Program.removeProgram);
+    //app.post('/v1/admin/program/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.program, middlewares.validatorV2.validateID, middlewares.Dashbaord.programExists, upload.single("logo")], controllers.dashboard.Program.setProgram);
+    //app.get('/v1/admin/program/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Program.getProgram);
+    //app.get('/v1/admin/program/getall', [ middlewares.Auth.isLogged], controllers.dashboard.Program.getAllPrograms);
+    //app.get('/v1/admin/program/getallbytype', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateStatusType, middlewares.validatorV2.validateRaffleDrawType], controllers.dashboard.Program.getAllProgramsByType);
+    //app.get('/v1/admin/program/getoffers', [ middlewares.Auth.isLogged], controllers.dashboard.Program.getAllPrograms);
+    //app.get('/v1/admin/program/getmyprograms', [ middlewares.Auth.isLogged], controllers.dashboard.Program.getAllPrograms);
+    //app.post('/v1/admin/program/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.program, middlewares.validatorV2.validateID, middlewares.validatorV2.validateProgramID, middlewares.Dashbaord.programExists, upload.single("logo")], controllers.dashboard.Program.editProgram);
+    //app.post('/v1/admin/program/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Program.removeProgram);
     
     //->Leadboard
-    //app.post('/v1/admin/leadboard/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.leadboard, middlewares.validatorV2.validateID, middlewares.Dashbaord.leadExists], controllers.dashboard.Leadboard.setLead);
-    //app.get('/v1/admin/leadboard/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.getLead);
-    //app.get('/v1/admin/leadboard/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], controllers.dashboard.Leadboard.getAllLeads);
-    //app.post('/v1/admin/leadboard/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.leadboard, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.editLead);
-    //app.get('/v1/admin/leadboard/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.removeLead);
+    //app.post('/v1/admin/leadboard/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.leadboard, middlewares.validatorV2.validateID, middlewares.Dashbaord.leadExists], controllers.dashboard.Leadboard.setLead);
+    //app.get('/v1/admin/leadboard/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.getLead);
+    //app.get('/v1/admin/leadboard/getall', [ middlewares.Auth.isLogged], controllers.dashboard.Leadboard.getAllLeads);
+    //app.post('/v1/admin/leadboard/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.leadboard, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.editLead);
+    //app.get('/v1/admin/leadboard/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.removeLead);
     
      //->Payment 
-     //app.post('/v1/admin/payment/new', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.payment, middlewares.Dashbaord.paymentExists], controllers.dashboard.Payment.pay);
+     //app.post('/v1/admin/payment/new', [ middlewares.Auth.isLogged, middlewares.validatorV2.payment, middlewares.Dashbaord.paymentExists], controllers.dashboard.Payment.pay);
      //app.get('/v1/verifypayment', [middlewares.validatorV2.validateTransactionID], controllers.dashboard.Payment.verifyPayment);
-     //app.get('/v1/admin/payment/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateRaffleDrawType, middlewares.validatorV2.validateDateType], controllers.dashboard.Payment.getPaymentByDate);
-     //app.get('/v1/admin/payment/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], controllers.dashboard.Payment.getAllPayments);
+     //app.get('/v1/admin/payment/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateRaffleDrawType, middlewares.validatorV2.validateDateType], controllers.dashboard.Payment.getPaymentByDate);
+     //app.get('/v1/admin/payment/getall', [ middlewares.Auth.isLogged], controllers.dashboard.Payment.getAllPayments);
      
      //Ticket
-     //app.get('/v1/admin/ticket/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateRaffleDrawType, middlewares.validatorV2.validateDate], controllers.dashboard.Payment.getPaymentByDate);
-     //app.get('/v1/admin/ticket/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateUserIDGet], controllers.dashboard.Payment.getAllTickets);
+     //app.get('/v1/admin/ticket/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateRaffleDrawType, middlewares.validatorV2.validateDate], controllers.dashboard.Payment.getPaymentByDate);
+     //app.get('/v1/admin/ticket/getall', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateUserIDGet], controllers.dashboard.Payment.getAllTickets);
      
      //Winners
-     //app.post('/v1/admin/winner/set', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateTicketIDPost], controllers.dashboard.Winner.setWinner);
+     //app.post('/v1/admin/winner/set', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateTicketIDPost], controllers.dashboard.Winner.setWinner);
      
      //Support
-     //app.post('/v1/user/support/feedback', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateUserIDPost, middlewares.validator.validateEmail, middlewares.validatorV2.validateTitle, middlewares.validatorV2.validateDescription], controllers.dashboard.Support.setFeedback);
+     //app.post('/v1/user/support/feedback', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateUserIDPost, middlewares.validator.validateEmail, middlewares.validatorV2.validateTitle, middlewares.validatorV2.validateDescription], controllers.dashboard.Support.setFeedback);
     
 
     //->Referral
-    //app.get('/v1/admin/referral/get', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.getLead);
-    // app.get('/v1/admin/referral/getall', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged], controllers.dashboard.Leadboard.getAllLeads);
-    //app.post('/v1/admin/referral/edit', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.leadboard, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.editLead);
-    //app.get('/v1/admin/leadboard/remove', [middlewares.Auth.isAuthorized, middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.removeLead);
+    //app.get('/v1/admin/referral/get', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.getLead);
+    // app.get('/v1/admin/referral/getall', [ middlewares.Auth.isLogged], controllers.dashboard.Leadboard.getAllLeads);
+    //app.post('/v1/admin/referral/edit', [ middlewares.Auth.isLogged, middlewares.validatorV2.leadboard, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.editLead);
+    //app.get('/v1/admin/leadboard/remove', [ middlewares.Auth.isLogged, middlewares.validatorV2.validateID], controllers.dashboard.Leadboard.removeLead);
         
 
 }
