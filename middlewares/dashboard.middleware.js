@@ -64,7 +64,7 @@ const litExists = ((req, res, next) => {
 })
 
 const emailExists = ((req, res, next) => {
-    User.findOne({email: req.body.email}, (err, result) => {
+    Student.findOne({email: req.body.email}, (err, result) => {
         if(err){
             console.log("Error: ", err);
             res.json({error:"error", result:"something went wrong"});
@@ -95,7 +95,7 @@ const accountVerified = ((req, res, next) => {
 })
 
 const phoneNumberExists = ((req, res, next) => {
-    User.findOne({phoneNumber: req.body.phoneNumber}, (err, result) => {
+    Student.findOne({phoneNumber: req.body.phoneNumber}, (err, result) => {
         if(err){
             console.log("Error: ", err);
             res.json({error:"error", result:"something went wrong"});
